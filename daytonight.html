@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day to Night Animation</title>
+  <style>
+    /* General styles for the SVG container */
+    .main-svg {
+      background-color: #8cdced; /* Daytime background color */
+      overflow: visible;
+      transition: background-color 1s ease; /* Smooth transition for background color */
+    }
+
+    /* Daytime styles */
+    #circle1 {
+      fill: #fff643; /* Daytime fill color for circle1 */
+      visibility: visible; /* Visible in daytime */
+      transition: fill 1s ease, visibility 1s ease; /* Smooth transition for fill and visibility */
+    }
+
+    #circle1-6 {
+      fill: #fff643; /* Daytime fill color for circle1-6 */
+      visibility: hidden; /* Hidden in daytime */
+      transition: fill 1s ease, visibility 1s ease; /* Smooth transition for fill and visibility */
+    }
+
+    /* Nighttime styles */
+    .night .main-svg {
+      background-color: #2c3e50; /* Nighttime background color */
+    }
+
+    .night #circle1 {
+      fill: #2ecc71; /* Nighttime fill color for circle1 */
+      visibility: hidden; /* Hidden in nighttime */
+    }
+
+    .night #circle1-6 {
+      fill: #2ecc71; /* Nighttime fill color for circle1-6 */
+      visibility: visible; /* Visible in nighttime */
+    }
+  </style>
+</head>
+<body>
+  <svg class="main-svg" width="600" height="200">
+    <circle
+      cx="458.32136"
+      cy="74.18162"
+      r="26.70075"
+      id="circle1"
+      style="fill:#fff643;fill-opacity:1" />
+    <path
+      id="circle1-6"
+      style="fill:#fff643;fill-opacity:1"
+      d="M 60.919922 35.865234 A 26.70075 26.70075 0 0 0 39.875 61.890625 A 26.70075 26.70075 0 0 0 66.574219 88.591797 A 26.70075 26.70075 0 0 0 84.886719 81.244141 A 26.70075 26.70075 0 0 1 79.230469 81.919922 A 26.70075 26.70075 0 0 1 52.53125 55.21875 A 26.70075 26.70075 0 0 1 60.919922 35.865234 z " />
+  </svg>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const now = new Date();
+      const hour = now.getHours();
+      const isDayTime = hour >= 6 && hour < 18; // Daytime is between 6 AM and 6 PM
+
+      // Toggle class based on time
+      if (isDayTime) {
+        document.body.classList.remove('night');
+      } else {
+        document.body.classList.add('night');
+      }
+    });
+  </script>
+</body>
+</html>
